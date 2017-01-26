@@ -12,8 +12,8 @@
     <access origin="*" />
     <allow-navigation href="https://*.honesty.store/*" />
     <allow-navigation href="https://honesty.store/*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
+    <allow-intent href="https://honesty.store/*" />
+    <allow-intent href="https://*.honesty.store/*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
