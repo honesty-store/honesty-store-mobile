@@ -1,11 +1,21 @@
 platform :ios do
     lane :deploy do
         match(
-            type: "adhoc"
+            type: "adhoc",
+            readonly: true
         )
         cordova(
-            platform: 'ios',
-            type: 'adhoc'
+            platform: "ios",
+            type: "adhoc"
         )
+        ipa_file = "honesty.store.ipa"
+        sh "cp ../platforms/ios/build/device/#{ipa_file} ./"
+        pilot(
+            distribute_external: false,
+            changelog: "Testing TestFlight... nothing to see here!"
+        )
+        sh "pwd"
+        # If the above isn't working...
+        # sh "fastlane pilot upload --changelog \"Testing TestFlight... nothing to see here!\""
     end
 end
