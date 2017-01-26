@@ -1,0 +1,6 @@
+git_url "git@github.com:honesty-store/honesty-store-ios-certificates.git"
+
+type "adhoc" # The default type, can be: appstore, adhoc or development
+
+app_identifier "com.scottlogic.honesty-store"
+username "sburnstone@scottlogic.com"

@@ -1,0 +1,11 @@
+platform :ios do
+    lane :deploy do
+        match(
+            type: "adhoc"
+        )
+        cordova(
+            platform: 'ios',
+            type: 'adhoc'
+        )
+    end
+end
