@@ -28,6 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         location = "https://master.honesty.store";
+        universalLinks.subscribe(null, function (eventData) {
+            location = eventData.url;
+        });
     },
 };
 
