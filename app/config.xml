@@ -35,7 +35,7 @@
         <icon height="167" src="res/ios/icon-83.5@2x.png" width="167" />
     </platform>
     <universal-links>
-        <host name="*.honesty.store" scheme="https" />
+        <host name="master.honesty.store" scheme="https" />
         <host name="honesty.store" scheme="https" />
     </universal-links>
     <preference name="StatusBarOverlaysWebView" value="false" />
