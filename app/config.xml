@@ -39,7 +39,8 @@
         <host name="honesty.store" scheme="https" />
     </universal-links>
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarStyle" value="blacktranslucent" />
+    <preference name="StatusBarBackgroundColor" value="#14415F" />
+    <preference name="StatusBarStyle" value="lightcontent" />
     <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
