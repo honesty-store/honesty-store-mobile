@@ -1,3 +1,5 @@
 /platforms
 /plugins
 *.ipa
+/ul_web_hooks
+fastlane/report.xml
