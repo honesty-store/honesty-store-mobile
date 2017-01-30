@@ -27,13 +27,12 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        location = "https://master.honesty.store";
-        universalLinks.subscribe(null, app.didLaunchFromLink);
+        document.getElementById('frame').src = 'https://honesty.store';
+        universalLinks.subscribe(null, this.didLaunchAppFromLink);
     },
 
-    didLaunchFromLink: function(eventData) {
-        alert('Did launch application from the link: ' + eventData.url);
-        window.location = eventData.url;
+    didLaunchAppFromLink: function(eventData) {
+        document.getElementById('frame').src = eventData.url;
     }
 };
 
