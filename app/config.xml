@@ -33,6 +33,11 @@
         <icon height="50" src="res/ios/icons/icon-50.png" width="50" />
         <icon height="100" src="res/ios/icons/icon-50@2x.png" width="100" />
         <icon height="167" src="res/ios/icons/icon-83.5@2x.png" width="167" />
+        <splash height="480" src="res/ios/splash/screen-iphone-portrait.png" width="320" />
+        <splash height="960" src="res/ios/splash/screen-iphone-portrait@2x.png" width="640" />
+        <splash height="1136" src="res/ios/splash/screen-iphone-568h@2x.png" width="640" />
+        <splash height="2208" src="res/ios/splash/screen-iphone-568h@2x.png" width="1242" />
+        <splash height="1334" src="res/ios/splash/screen-iphone-568h@2x.png" width="750" />
     </platform>
     <universal-links>
         <host name="master.honesty.store" scheme="https" />
