@@ -40,7 +40,6 @@
         <splash height="1334" src="res/ios/splash/screen-iphone-568h@2x.png" width="750" />
     </platform>
     <universal-links>
-        <host name="master.honesty.store" scheme="https" />
         <host name="honesty.store" scheme="https" />
     </universal-links>
     <preference name="StatusBarOverlaysWebView" value="false" />
