@@ -28,10 +28,13 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         location = "https://master.honesty.store";
-        universalLinks.subscribe(null, function (eventData) {
-            location = eventData.url;
-        });
+        universalLinks.subscribe(null, app.didLaunchFromLink);
     },
+
+    didLaunchFromLink: function(eventData) {
+        alert('Did launch application from the link: ' + eventData.url);
+        window.location = eventData.url;
+    }
 };
 
 app.initialize();
