@@ -36,8 +36,8 @@
         <splash height="480" src="res/ios/splash/screen-iphone-portrait.png" width="320" />
         <splash height="960" src="res/ios/splash/screen-iphone-portrait@2x.png" width="640" />
         <splash height="1136" src="res/ios/splash/screen-iphone-568h@2x.png" width="640" />
-        <splash height="2208" src="res/ios/splash/screen-iphone-568h@2x.png" width="1242" />
-        <splash height="1334" src="res/ios/splash/screen-iphone-568h@2x.png" width="750" />
+        <splash height="2208" src="res/ios/splash/screen-iphone-2208-1242.png" width="1242" />
+        <splash height="1334" src="res/ios/splash/screen-iphone-1334-750.png" width="750" />
     </platform>
     <universal-links>
         <host name="honesty.store" scheme="https" />
