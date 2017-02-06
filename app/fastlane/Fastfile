@@ -16,4 +16,10 @@ platform :ios do
         )
         sh "rm -f ../#{ipa_file}"
     end
+
+    lane :build do
+        sh "cordova platform rm ios"
+        sh "cordova prepare ios"
+        sh "open ../platforms/ios/honesty.store.xcworkspace"
+    end
 end
