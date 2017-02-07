@@ -42,6 +42,7 @@
     <universal-links>
         <host name="honesty.store" scheme="https" />
     </universal-links>
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#14415F" />
     <preference name="StatusBarStyle" value="lightcontent" />
