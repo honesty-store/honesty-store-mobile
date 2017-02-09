@@ -12,7 +12,7 @@ platform :ios do
         sh "cp ../platforms/ios/build/device/#{ipa_file} ../"
         pilot(
             distribute_external: false,
-            changelog: "Testing TestFlight upload... nothing to see here!"
+            changelog: "Add no network connection page"
         )
         sh "rm -f ../#{ipa_file}"
     end
