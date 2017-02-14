@@ -29,15 +29,14 @@
               * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                   * Enable inline JS: add 'unsafe-inline' to default-src
           -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://honesty.store data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.honesty.store https://honesty.store 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' https://*.honesty.store https://honesty.store 'unsafe-inline'; media-src *; img-src https://*.honesty.store https://honesty.store 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <title>honesty.store</title>
     <style>
       html,
-      body,
-      iframe {
+      body {
         height: 100%;
         width: 100%;
         border: 0;
@@ -48,10 +47,11 @@
   </head>
 
   <body>
-    <iframe id="frame" src="loading.html" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: none;"></iframe>
-
+    <div id="root"></div>
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/fetch.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/asset-loader.js"></script>
   </body>
 
 </html>

@@ -18,6 +18,7 @@ var app = {
     this.loadURL(eventData.url); // Watch out... may need to bind 'this'...
   },
 
+  /** TODO: Determine if the network connection plugin is still needed - we might ok to just rely on the web app itself. */
   onOffline: function () {
     this.loadURL('offline.html');
   },
@@ -27,8 +28,8 @@ var app = {
   },
 
   loadURL: function (url) {
-    document.getElementById('frame').src = url;
-  }
+    console.log('TODO: Load url ' + url);
+  },
 };
 
 app.initialize();
