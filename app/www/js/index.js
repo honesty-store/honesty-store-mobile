@@ -30,6 +30,23 @@ var app = {
   loadURL: function (url) {
     console.log('TODO: Load url ' + url);
   },
+  loadApplicationAssets: function () {
+    fetch(baseUrl + '/asset-manifest.json')
+      .then(r => r.json())
+      .then(assets => {
+        var mainJS = assets['main.js'];
+        var mainCSS = assets['main.css'];
+
+        var scriptEl = document.createElement('script');
+        scriptEl.setAttribute('src', baseUrl + '/' + mainJS);
+        document.body.appendChild(scriptEl);
+
+        var styleEl = document.createElement('link');
+        styleEl.setAttribute('rel', 'stylesheet');
+        styleEl.setAttribute('href', baseUrl + '/' + mainCSS);
+        document.head.appendChild(styleEl);
+      });
+  }
 };
 
 app.initialize();
