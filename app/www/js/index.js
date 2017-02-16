@@ -15,21 +15,18 @@ var app = {
   },
 
   didLaunchAppFromLink: function (eventData) {
-    this.loadURL(eventData.url); // Watch out... may need to bind 'this'...
+    // TODO: Prefix url with # where necessary
   },
 
   /** TODO: Determine if the network connection plugin is still needed - we might ok to just rely on the web app itself. */
   onOffline: function () {
-    this.loadURL('offline.html');
+    window.location = 'offline.html';
   },
 
   onOnline: function () {
-    this.loadURL(baseUrl) // Again, may need to bind 'this'
+    this.loadApplicationAssets();
   },
 
-  loadURL: function (url) {
-    console.log('TODO: Load url ' + url);
-  },
   loadApplicationAssets: function () {
     fetch(baseUrl + '/asset-manifest.json')
       .then(r => r.json())
