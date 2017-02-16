@@ -1,4 +1,4 @@
-var prefix = 'https://agnostic-history.honesty.store';
+var prefix = 'https://honesty.store';
 fetch(prefix + '/asset-manifest.json')
   .then(r => r.json())
   .then(assets => {
