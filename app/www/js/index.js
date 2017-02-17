@@ -16,8 +16,17 @@ var app = {
   },
 
   didLaunchAppFromLink: function (eventData) {
-    // TODO: Prefix url with # where necessary
-    alert(eventData.url);
+    // Pull out url beyond domain
+    var urlPortionRegex = /(honesty\.store\/)(.*)/;
+    var urlMatches = urlPortionRegex.exec(eventData.url);
+
+    if (urlMatches.length !== 3) {
+      return;
+    }
+
+    var newRoute = urlMatches[2];
+    var currentLocationMinusRoute = window.location.href.replace(/(.*index.html#\/)(.*)/, '$1');
+    window.location = currentLocationMinusRoute + newRoute;
   },
 
   onOffline: function () {
