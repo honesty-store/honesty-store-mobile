@@ -6,7 +6,8 @@ var app = {
   },
 
   onDeviceReady: function () {
-    this.loadURL(baseUrl);
+    this.loadApplicationAssets();
+
     universalLinks.subscribe(null, this.didLaunchAppFromLink.bind(this));
 
     // Register for connectivity events
