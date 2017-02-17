@@ -39,15 +39,49 @@
       body {
         height: 100%;
         width: 100%;
-        border: 0;
         margin: 0;
         padding: 0;
+      }
+
+      #offline>div {
+        margin: auto;
+        text-align: center;
+      }
+
+      #offline {
+        background: #14415F;
+        flex-direction: column;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        font-family: sans-serif;
+        color: white;
+      }
+
+      #offline h1 {
+        font-size: 1.8rem;
+      }
+
+      .invisible {
+        display: none !important;
+      }
+
+      .expand-height {
+        height: 100% !important;
       }
     </style>
   </head>
 
   <body>
+
     <div id="root"></div>
+    <div id="offline" class="invisible">
+      <div>
+        <h1>No network connection!</h1>
+        <h4>Please go online to use honesty.store</h4>
+      </div>
+    </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/fetch.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
