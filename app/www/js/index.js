@@ -6,26 +6,41 @@ var app = {
   },
 
   onDeviceReady: function () {
-    this.loadApplicationAssets();
-
-    universalLinks.subscribe(null, this.didLaunchAppFromLink.bind(this));
-
     // Register for connectivity events
     document.addEventListener("offline", this.onOffline.bind(this));
     document.addEventListener("online", this.onOnline.bind(this));
+
+    this.loadApplicationAssets();
+
+    universalLinks.subscribe(null, this.didLaunchAppFromLink.bind(this));
   },
 
   didLaunchAppFromLink: function (eventData) {
     // TODO: Prefix url with # where necessary
+    alert(eventData.url);
   },
 
-  /** TODO: Determine if the network connection plugin is still needed - we might ok to just rely on the web app itself. */
   onOffline: function () {
-    window.location = 'offline.html';
+    var rootEl = document.getElementById('root');
+    rootEl.classList.add('invisible');
+    var offlineEl = document.getElementById('offline');
+    offlineEl.classList.remove('invisible');
+
+    document.documentElement.classList.add('expand-height');
   },
 
   onOnline: function () {
-    this.loadApplicationAssets();
+    var rootEl = document.getElementById('root');
+    rootEl.classList.remove('invisible');
+    var offlineEl = document.getElementById('offline');
+    offlineEl.classList.add('invisible');
+
+    document.documentElement.classList.remove('expand-height');
+
+    if (document.documentElement.classList.indexOf('loaded') === -1) {
+      // Hasn't yet fetched assets
+      this.loadApplicationAssets();
+    }
   },
 
   loadApplicationAssets: function () {
