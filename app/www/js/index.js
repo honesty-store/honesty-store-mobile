@@ -15,23 +15,26 @@ var app = {
     document.addEventListener("offline", this.onOffline.bind(this));
     document.addEventListener("online", this.onOnline.bind(this));
 
-    this.loadApplicationAssets();
+    this.loadApplicationAssetsIfNeeded();
 
     universalLinks.subscribe(null, this.didLaunchAppFromLink.bind(this));
   },
 
   didLaunchAppFromLink: function (eventData) {
-    // Pull out url beyond domain
-    var urlPortionRegex = /(honesty\.store\/)(.*)/;
-    var urlMatches = urlPortionRegex.exec(eventData.url);
+    this.loadApplicationAssetsIfNeeded().then(function() {
+      // Pull out url beyond domain
+      var urlPortionRegex = /(honesty\.store\/)(.*)/;
+      var urlMatches = urlPortionRegex.exec(eventData.url);
 
-    if (urlMatches.length !== 3) {
-      return;
-    }
+      if (urlMatches.length !== 3) {
+        // Invalid universal link, so just show the main page
+        return;
+      }
 
-    var newRoute = urlMatches[2];
-    var currentLocationMinusRoute = window.location.href.replace(/(.*index.html#\/)(.*)/, '$1');
-    window.location = currentLocationMinusRoute + newRoute;
+      var newRoute = urlMatches[2];
+      var currentLocationMinusRoute = window.location.href.replace(/(.*index.html)(.*)/, '$1');
+      window.location = currentLocationMinusRoute + '#' + newRoute;[]
+    });
   },
 
   onOffline: function () {
@@ -51,16 +54,26 @@ var app = {
 
     document.documentElement.classList.remove('expand-height');
 
-    if (document.documentElement.classList.indexOf('loaded') === -1) {
-      // Hasn't yet fetched assets
-      this.loadApplicationAssets();
-    }
+    this.loadApplicationAssetsIfNeeded();
   },
 
-  loadApplicationAssets: function () {
-    fetch(baseUrl + '/asset-manifest.json')
+  loadApplicationAssetsIfNeeded: function () {
+    var hasLoadedAssets = function() { return document.documentElement.classList.contains('loaded') };
+
+    if (hasLoadedAssets()) {
+      return Promise.resolve();
+    }
+
+    return fetch(baseUrl + '/asset-manifest.json')
       .then(r => r.json())
       .then(assets => {
+
+        if (hasLoadedAssets()) {
+          /* Protect the odd case where we get multiple calls to load assets in quick succession - we
+          don't want to add mulitple scripts to the same file */
+          return;
+        }
+
         var mainJS = assets['main.js'];
         var mainCSS = assets['main.css'];
 
