@@ -1,5 +1,10 @@
 var baseUrl = 'https://honesty.store';
 
+// Add Promise polyfill
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
 var app = {
   initialize: function () {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
