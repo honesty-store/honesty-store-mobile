@@ -58,7 +58,15 @@ var app = {
   },
 
   loadApplicationAssetsIfNeeded: function () {
-    var hasLoadedAssets = function() { return document.documentElement.classList.contains('loaded') };
+    var hasLoadedAssets = function() {
+      var scripts = document.body.getElementsByTagName('script');
+      for (var i = 0; i < scripts.length; i++) {
+        if (scripts[i].src.match(/honesty\.store\/.*\/main\..*\.js/)) {
+          return true;
+        }
+      }
+      return false;
+    };
 
     if (hasLoadedAssets()) {
       return Promise.resolve();
