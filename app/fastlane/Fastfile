@@ -1,33 +1,40 @@
 platform :ios do
     lane :deploy do
+        remove_platform()
         # Destroy any existing profiles
         sh 'rm -f ~/Library/MobileDevice/Provisioning\ Profiles/*'
         # Use fastlane match to pull down the profile
         match(
-            type: "appstore",
+            type: 'appstore',
             readonly: true
         )
         # Build and deploy TestFlight
         cordova(
-            platform: "ios",
-            type: "appstore"
+            platform: 'ios',
+            type: 'appstore'
         )
-        ipa_file = "honesty.store.ipa"
-        sh "cp ../platforms/ios/build/device/#{ipa_file} ../"
+        ipa_file = 'honesty.store.ipa'
+        sh 'cp ../platforms/ios/build/device/#{ipa_file} ../'
         pilot(
             distribute_external: false,
-            changelog: "Add no network connection page"
+            changelog: 'Add no network connection page'
         )
-        sh "rm -f ../#{ipa_file}"
+        sh 'rm -f ../#{ipa_file}'
     end
 
     lane :build do
+        remove_platform()
         match(
-            type: "development",
+            type: 'development',
             readonly: true
         )
         sh "cordova platform rm ios"
         sh "cordova prepare ios"
         sh "open ../platforms/ios/honesty.store.xcworkspace"
     end
+
+    lane :remove_platform do
+        sh 'cordova platform rm ios'
+        sh 'rm -rf ../plugins/*'
+    end;
 end
