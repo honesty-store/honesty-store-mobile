@@ -29,9 +29,14 @@ xcode-select --install
 </table>
 # Available Actions
 ## iOS
-### ios deploy
+### ios release
 ```
-fastlane ios deploy
+fastlane ios release
+```
+
+### ios development
+```
+fastlane ios development
 ```
 
 ### ios build
