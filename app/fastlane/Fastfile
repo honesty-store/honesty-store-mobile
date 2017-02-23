@@ -1,36 +1,23 @@
 platform :ios do
-    lane :deploy do
-        remove_platform()
-        # Destroy any existing profiles
-        sh 'rm -f ~/Library/MobileDevice/Provisioning\ Profiles/*'
-        # Use fastlane match to pull down the profile
-        match(
-            type: 'appstore',
-            readonly: true
-        )
-        # Build and deploy TestFlight
-        cordova(
-            platform: 'ios',
-            type: 'appstore'
-        )
-        ipa_file = 'honesty.store.ipa'
-        sh 'cp ../platforms/ios/build/device/#{ipa_file} ../'
-        pilot(
-            distribute_external: false,
-            changelog: 'Add no network connection page'
-        )
-        sh 'rm -f ../#{ipa_file}'
+    lane :release do
+        build(type: 'appstore')
     end
 
-    lane :build do
+    lane :development do
+        build(type: 'development')
+    end
+
+    lane :build do |options|
         remove_platform()
         match(
-            type: 'development',
+            type: options[:type],
             readonly: true
         )
-        sh "cordova platform rm ios"
-        sh "cordova prepare ios"
-        sh "open ../platforms/ios/honesty.store.xcworkspace"
+        sh 'cordova platform add ios'
+        # Apologies for this nastiness, but 'cordova' fastlane plugin doesn't seem to work and we need to 'build' rather than 'prepare''
+        # otherwise the status bar plugin doesn't to get loaded
+        sh 'cordova build ios || true'
+        sh 'open ../platforms/ios/honesty.store.xcworkspace'
     end
 
     lane :remove_platform do
