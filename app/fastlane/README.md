@@ -39,6 +39,11 @@ fastlane ios deploy
 fastlane ios build
 ```
 
+### ios remove_platform
+```
+fastlane ios remove_platform
+```
+
 
 ----
 
