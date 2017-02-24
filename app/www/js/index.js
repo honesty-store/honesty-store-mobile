@@ -26,6 +26,8 @@ var app = {
       var urlPortionRegex = /(honesty\.store\/)(.*)/;
       var urlMatches = urlPortionRegex.exec(eventData.url);
 
+      console.log(urlMatches);
+
       if (urlMatches.length !== 3) {
         // Invalid universal link, so just show the main page
         return;
@@ -33,7 +35,8 @@ var app = {
 
       var newRoute = urlMatches[2];
       var currentLocationMinusRoute = window.location.href.replace(/(.*index.html)(.*)/, '$1');
-      window.location = currentLocationMinusRoute + '#' + newRoute;[]
+      window.location = currentLocationMinusRoute + '#' + newRoute;
+      window.location.reload();
     });
   },
 
@@ -42,6 +45,7 @@ var app = {
     rootEl.classList.add('invisible');
     var offlineEl = document.getElementById('offline');
     offlineEl.classList.remove('invisible');
+    console.log('Offline');
 
     document.documentElement.classList.add('expand-height');
   },
