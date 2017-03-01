@@ -12,7 +12,7 @@ First things first, install fastlane
 ## Deploying to TestFlight
 
 - Go to `app/fastlane/Fastfile` and modify the `apple_id` variable to be your own.
-- Build using `fastlane ios appstore`. You may be prompted to enter your Apple ID password so the match tool can pull down the relevant provisioning profile/certificate gubbins.
+- Build using `fastlane ios release`. You may be prompted to enter your Apple ID password so the match tool can pull down the relevant provisioning profile/certificate gubbins.
 - Xcode should open. Open project settings and click on honesty.store target.
 - Change `Signing (Release)` provisioning profile to `match AppStore com.scottlogic.honesty-store`
 - Change build target to be `Generic iOS Device`
