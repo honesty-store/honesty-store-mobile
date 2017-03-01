@@ -24,19 +24,23 @@ const didLaunchAppFromLink = (eventData) => {
 };
 
 const onOffline = () => {
-  rootEl.classList.add('invisible');
-  offlineEl.classList.remove('invisible');
-
-  document.documentElement.classList.add('expand-height');
+  hideElement(rootEl);
+  showElement(offlineEl);
 };
 
 const onOnline = () => {
-  rootEl.classList.remove('invisible');
-  offlineEl.classList.add('invisible');
-
-  document.documentElement.classList.remove('expand-height');
+  showElement(rootEl);
+  hideElement(offlineEl);
 
   loadApplicationAssetsIfNeeded();
+};
+
+const hideElement = (el) => {
+  el.setAttribute('style', 'display: none');
+};
+
+const showElement = (el) => {
+   el.setAttribute('style', 'display: ');
 };
 
 const loadApplicationAssetsIfNeeded = () => {
@@ -73,3 +77,4 @@ const loadApplicationAssetsIfNeeded = () => {
 };
 
 document.addEventListener('deviceready', onDeviceReady, false);
+hideElement(offlineEl);
