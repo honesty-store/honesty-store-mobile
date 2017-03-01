@@ -1,5 +1,8 @@
 const baseUrl = 'https://honesty.store';
 
+const rootEl = document.getElementById('root');
+const offlineEl = document.getElementById('offline');
+
 const onDeviceReady = () => {
   // Register for connectivity events
   document.addEventListener('offline', onOffline);
@@ -30,18 +33,14 @@ const didLaunchAppFromLink = (eventData) => {
 };
 
 const onOffline = () => {
-  const rootEl = document.getElementById('root');
   rootEl.classList.add('invisible');
-  const offlineEl = document.getElementById('offline');
   offlineEl.classList.remove('invisible');
 
   document.documentElement.classList.add('expand-height');
 };
 
 const onOnline = () => {
-  const rootEl = document.getElementById('root');
   rootEl.classList.remove('invisible');
-  const offlineEl = document.getElementById('offline');
   offlineEl.classList.add('invisible');
 
   document.documentElement.classList.remove('expand-height');
