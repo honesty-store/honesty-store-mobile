@@ -4,7 +4,6 @@ const rootEl = document.getElementById('root');
 const offlineEl = document.getElementById('offline');
 
 const onDeviceReady = () => {
-  // Register for connectivity events
   document.addEventListener('offline', onOffline);
   document.addEventListener('online', onOnline);
 
@@ -16,7 +15,6 @@ const onDeviceReady = () => {
 const didLaunchAppFromLink = (eventData) => {
   loadApplicationAssetsIfNeeded()
     .then(() => {
-      // Pull out url beyond domain
       const urlPortionRegex = /(honesty\.store\/)(.*)/;
       const urlMatches = urlPortionRegex.exec(eventData.url);
 
