@@ -15,17 +15,10 @@ const onDeviceReady = () => {
 const didLaunchAppFromLink = (eventData) => {
   loadApplicationAssetsIfNeeded()
     .then(() => {
-      const urlPortionRegex = /(honesty\.store\/)(.*)/;
-      const urlMatches = urlPortionRegex.exec(eventData.url);
+      const { pathname, search } = new URL(eventData.url);
 
-      if (urlMatches.length !== 3) {
-        // Invalid universal link, so just show the main page
-        return;
-      }
-
-      const newRoute = urlMatches[2];
       const currentLocationMinusRoute = window.location.href.replace(/(.*index.html)(.*)/, '$1');
-      window.location = currentLocationMinusRoute + '#' + newRoute;
+      window.location = `${currentLocationMinusRoute}#${pathname}${search}`;
       window.location.reload();
     });
 };
@@ -53,7 +46,7 @@ const loadApplicationAssetsIfNeeded = () => {
     return Promise.resolve();
   }
 
-  return fetch(baseUrl + '/asset-manifest.json')
+  return fetch(`${baseUrl}/asset-manifest.json`)
     .then(r => r.json())
     .then(assets => {
 
@@ -67,13 +60,13 @@ const loadApplicationAssetsIfNeeded = () => {
       const mainCSS = assets['main.css'];
 
       const scriptEl = document.createElement('script');
-      scriptEl.setAttribute('src', baseUrl + '/' + mainJS);
+      scriptEl.setAttribute('src', `${baseUrl}/${mainJS}`);
       scriptEl.setAttribute('class', 'asset');
       document.body.appendChild(scriptEl);
 
       const styleEl = document.createElement('link');
       styleEl.setAttribute('rel', 'stylesheet');
-      styleEl.setAttribute('href', baseUrl + '/' + mainCSS);
+      styleEl.setAttribute('href', `${baseUrl}/${mainCSS}`);
       document.head.appendChild(styleEl);
     })
     .catch(onOffline);
