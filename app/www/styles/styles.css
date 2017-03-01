@@ -28,11 +28,3 @@ html {
 #offline h1 {
   font-size: 1.8rem;
 }
-
-.invisible {
-  display: none !important;
-}
-
-.expand-height {
-  height: 100% !important;
-}
