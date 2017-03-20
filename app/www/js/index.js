@@ -3,6 +3,10 @@ const baseUrl = 'https://honesty.store';
 const rootEl = document.getElementById('root');
 const offlineEl = document.getElementById('offline');
 
+document.addEventListener('DOMContentLoaded', () => {
+  FastClick.attach(document.body);
+});
+
 const onDeviceReady = () => {
   document.addEventListener('offline', onOffline);
   document.addEventListener('online', onOnline);
